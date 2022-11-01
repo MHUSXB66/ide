@@ -7,7 +7,6 @@ RUN apk add -U --no-cache \
 RUN curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | zsh || true
 COPY zshrc .zshrc
 COPY vimrc .config/nvim/init.vim
-COPY tmux.conf .tmux.conf
 # Install Vim Plug for plugin management
 RUN curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # Install plugins
@@ -15,7 +14,6 @@ RUN nvim +PlugInstall +qall >> /dev/null
 # Install Tmux Plugin Manager
 RUN git clone https://github.com/tmux-plugins/tpm .tmux/plugins/tpm
 # Install plugins
-RUN .tmux/plugins/tpm/bin/install_plugins
 RUN apk add -U --no-cache \
     neovim git git-perl \
     zsh tmux openssh-client bash ncurses \
